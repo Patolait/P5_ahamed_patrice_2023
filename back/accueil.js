@@ -1,5 +1,20 @@
 //Recuperation des pieces depuis l' API
-const pieces = await fetch("http://localhost:3000/api/products").then(pieces =>pieces.json());
+const pieces = async () => {
+    let reponse = await fetch ("http://localhost:3000/api/products")
+
+    if (reponse.ok){
+        return reponse.json()
+    }
+    else {
+        throw "Erreur sur la requete"
+    }
+}
+
+ //Creation element
+ const create = (element) =>{
+    let creation = document.createElement(element)
+    return creation
+ }
 
 //Fonction qui génère les pièces sur la page d'accueil
 function genererPieces(pieces){
@@ -7,22 +22,24 @@ function genererPieces(pieces){
         const sectionProduits = document.querySelector(".items");
 
         //Balise a
-        const lien = document.createElement("a href");
+        const lien = create ("a href");
 
         //Balise article
-        const pieceElement = document.createElement("article");
+        const pieceElement = create ("article");
 
         //Balise image
-        const imageElement = document.createElement("img");
+        const imageElement = create ("img");
         imageElement.src = pieces[i].imageUrl
 
         //Titre
-        const nomElement = document.createElement("h3");
+        const nomElement = create ("h3");
         nomElement.innerText = pieces.name;
 
         //Description
-        const descriptionElement = document.createElement("p");
+        const descriptionElement = create ("p");
         descriptionElement.innerText = pieces.description;
+
+        
         sectionProduits.appendChild(lien);
         sectionProduits.appendChild(pieceElement);
         sectionProduits.appendChild(imageElement);

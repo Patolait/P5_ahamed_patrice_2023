@@ -1,6 +1,17 @@
 //Recuperation des pieces depuis l' API
-const reponse = await fetch ("http://localhost:3000/api/products");
+const api = `http://localhost:3000/api/products`
 
+const callApi = async () =>{
+    let response = await fetch (api)
+
+    if (response.ok){
+        return response.json()
+    }
+    else{
+
+        throw "Erreur sur la requête"
+    }
+}
 
 
  //Creation element
@@ -11,7 +22,8 @@ const reponse = await fetch ("http://localhost:3000/api/products");
 
 //Fonction qui génère les pièces sur la page d'accueil
 let genererPieces = async () =>{
-    const pieces = await reponse.json();
+    const pieces = await callApi('/');
+
     console.log (pieces);
 
     for (let i = 0; i < pieces.length ; i++){
@@ -44,6 +56,7 @@ let genererPieces = async () =>{
         sectionProduits.appendChild(nomElement);
         sectionProduits.appendChild(descriptionElement);
     }
+
 }
 
-genererPieces(pieces);
+genererPieces;

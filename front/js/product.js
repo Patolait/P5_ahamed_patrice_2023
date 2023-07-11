@@ -1,5 +1,4 @@
 //Recuperation des pieces depuis l' API
-//Recuperation des pieces depuis l' API
 const api = `http://localhost:3000/api/products`
 
 const callApi = async () =>{
@@ -45,10 +44,9 @@ async function reuperationProduit(){
 
 
    //Image
-   selector ('item__img')
-   getImage (img, product.imageUrl, "Photographie du canapé" + `${product.name}`)
+   selector ('item__img').getImage (img, product.imageUrl, "Photographie du canapé" + `${product.name}`)
 
    //Prix
-   getId(Title)
+   getId(price).innerText = `${product.price} €`
 
 }

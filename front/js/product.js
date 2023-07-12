@@ -30,7 +30,9 @@ const getImage = (img, src, alt) => {
    return img 
 }
 
-async function reuperationProduit(){
+
+
+async function recuperationProduit(){
    //Recherche de l'url
    const searchUrl = window.location.search
 
@@ -40,13 +42,34 @@ async function reuperationProduit(){
    let product = await callApi(`/${id}`)
 
    //Titre
-   selector('title').innerText = `${product.name}`
+   selector('.title').innerText = `${product.name}`
 
 
    //Image
-   selector ('item__img').getImage (img, product.imageUrl, "Photographie du canapé" + `${product.name}`)
+   selector ('.item__img').getImage (img, product.imageUrl, "Photographie du canapé" + `${product.name}`)
 
    //Prix
-   getId(price).innerText = `${product.price} €`
+   getId('price').innerText = `${product.price} €`
 
+   //Description
+   getId('description').innerText = `${product.description}`
+
+   //liste couleurs
+   const listeCouleurs = getId('colors');
+   const colors = product.colors
+   for (let value of colors) {
+      let option = document.createElement(option)
+      option.value = value
+      option.innerText = value
+      listeCouleurs.appenChild(option)
+   }
 }
+
+//Ajout au panier
+
+getId('addToCart').addEventListener('click', function(){
+   
+
+
+
+})

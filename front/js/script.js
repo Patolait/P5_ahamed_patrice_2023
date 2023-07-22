@@ -32,7 +32,7 @@ let genererPieces = async () =>{
 
         //Balise a
         const lien = create ("a");
-        lien.href = reponse + article._id
+        lien.href = 'product.html?id=' + article._id
 
         //Balise article
         const pieceElement = create ("article");
@@ -40,23 +40,24 @@ let genererPieces = async () =>{
         //Balise image
         const imageElement = create ("img");
         imageElement.src = article.imageUrl
+        imageElement.alt = "Photographie du canapé" + `${article.name}`
 
         //Titre
         const nomElement = create ("h3");
-        nomElement.innerText = article.name;
+        nomElement.innerText = `${article.name}`;
 
         //Description
         const descriptionElement = create ("p");
-        descriptionElement.innerText = article.description;
+        descriptionElement.innerText = `${article.description}`;
 
         
         sectionProduits.appendChild(lien);
-        sectionProduits.appendChild(pieceElement);
-        sectionProduits.appendChild(imageElement);
-        sectionProduits.appendChild(nomElement);
-        sectionProduits.appendChild(descriptionElement);
+        lien.appendChild(pieceElement);
+        pieceElement.appendChild(imageElement);
+        pieceElement.appendChild(nomElement);
+        pieceElement.appendChild(descriptionElement);
     }
 
 }
 
-genererPieces;
+genererPieces();

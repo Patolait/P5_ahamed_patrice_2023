@@ -15,7 +15,7 @@ const callApi = async () =>{
 
 
  //Creation element
- const create = (element) =>{
+const create = (element) =>{
     let creation = document.createElement(element)
     return creation
  }

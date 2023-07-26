@@ -137,6 +137,6 @@ let recuperationProduit = async () => {
       
 }
 
-recuperationProduit();
+const cart = JSON.parse(localStorage.getItem('Store'));
 
-//Ajout au panier
+recuperationProduit();

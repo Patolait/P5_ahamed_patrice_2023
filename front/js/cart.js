@@ -24,6 +24,10 @@ const getId = (id) => {
     return document.getElementById(id);
  }
 
+ const getClassName = (name) => {
+    return document.getElementsByClassName(name);
+ }
+
  const divCreate = (element) =>{
     let divCreation = create("div");
     divCreation.classList.add(element);
@@ -32,7 +36,9 @@ const getId = (id) => {
  }
 
 
-
+let totalArticle = 0
+let totalPriceUnit = 0
+let totalPrice = 0
 
 
 let recuperationPanier = async () => {
@@ -49,6 +55,11 @@ let recuperationPanier = async () => {
         for (let element of elementCart) {
 
             let product = await callApi(`/${element.id}`)
+            
+            totalArticle = Number(element.quantity) + Number(totalArticle) 
+            totalPriceUnit = Number(element.quantity) * product.price
+            totalPrice = Number(totalPriceUnit) + Number(totalPrice)
+            
         
             let section = getId('cart__items')
     
@@ -99,8 +110,6 @@ let recuperationPanier = async () => {
             textDelete.classList.add("deleteItem")
             textDelete.innerText = "Supprimer"
                       
-
-
     
             section.appendChild(article);
             article.appendChild(divImage);
@@ -117,9 +126,20 @@ let recuperationPanier = async () => {
             divContent.appendChild(divDelete);
             divDelete.appendChild(textDelete);
 
-    
 
         }
+
+
+
+        //Somme quantité et prix
+        console.log(totalArticle)
+        console.log(totalPrice)
+        let totalQuantity = getId('totalQuantity')
+        totalQuantity.innerText = totalArticle
+
+        let total = getId('totalPrice')
+        total.innerText = totalPrice
+
 
     }
     artcileCart()
